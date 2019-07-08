@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojodachi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href=~/css/site.css>
+</head>
+<body>
+    @model Pet;
+    <div class = "container">
+        <div class = "row">
+            <div class = "col">
+                <p>Fullness: @Model.Fullness</p>
+            </div>
+            <div class = "col">
+                <p>Happiness: @Model.Happiness</p>
+            </div>
+            <div class = "col">
+                <p>Meals: @Model.Meals</p>
+            </div>
+            <div class = "col">
+                <p>Energy: @Model.Energy</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class = "yachi">
+        <div class = "container">
+            <div class = "row">
+                @if(ViewBag.Picture == 1){
+                    <img src="~/images/michael1.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 2){
+                    <img src="~/images/michael2.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 3){
+                    <img src="~/images/michael3.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 4){
+                    <img src="~/images/michael4.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 5){
+                    <img src="~/images/michael5.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 6){
+                    <img src="~/images/michael6.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 7){
+                    <img src="~/images/michael7.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 8){
+                    <img src="~/images/michael8.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                @if(ViewBag.Picture == 9){
+                    <img src="~/images/michael9.gif" alt="ASP.NET" class="img-responsive"/>
+                }
+                
+            </div>
+            <p>@ViewBag.Message</p>
+        </div>
+    </div>
+    <div class = "container">
+        @if(ViewBag.Status == 0) {
+        <div class = "row">
+            <div class = "col">
+                <form action = "feed" method = "post">
+                    <button type="submit" class="btn btn-primary">Feed</button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action = "play" method = "post">
+                    <button type="submit" class="btn btn-success">Play</button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action = "work" method = "post">
+                    <button type="submit" class="btn btn-light">Work</button>
+                </form>
+            </div>
+            <div class = "col">
+                <form action = "sleep" method = "post">
+                    <button type="submit" class="btn btn-danger">Sleep</button>
+                </form>
+            </div>
+        </div>
+        <div class ="row">
+            <form class = "restart" action = "/">
+                <button type="submit" class="btn btn-danger">Restart</button>
+            </form>
+        </div>
+        }
+        @if(ViewBag.Status == 1) {
+            <form action = "/">
+                <button type="submit" class="btn btn-success">Restart</button>
+            </form>
+        }
+    </div>
+    
+</body>
+</html>

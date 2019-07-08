@@ -1,0 +1,26 @@
+﻿body {
+    background-color: #363636;
+    color: white;
+    margin: 20px;
+}
+
+.stats {
+    display: inline;
+}
+
+.yachi {
+    width: 100%;
+    border: 1px solid;
+    margin: 20px 0px;
+}
+img {
+    margin: 20px 25%;
+}
+
+form {
+    padding-left: 25%;
+}
+.restart {
+    padding: 0px;
+    margin: 20px;
+}
