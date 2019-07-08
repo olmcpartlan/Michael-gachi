@@ -22,12 +22,13 @@ namespace Dojodachi.Controllers {
             HttpContext.Session.SetInt32 ("Meals", 3);
             newPet.Meals = (int) HttpContext.Session.GetInt32 ("Meals");
             ViewBag.Picture = 1;
+            string newMessage = "It's Monday morning and Michael is unmotivated. Help Michael make it to the weekend!";
+            ViewBag.Message = newMessage;
             return View (newPet);
         }
 
         [Route ("feed")]
         public IActionResult Feed () {
-
             // Creating Varibales to update Fullness
             // Creating new instance of "Updated Pet"
             ViewBag.Status = 0;
@@ -36,6 +37,14 @@ namespace Dojodachi.Controllers {
             updated.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
             updated.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
             updated.Energy = (int) HttpContext.Session.GetInt32 ("Energy");
+            updated.Meals = (int) HttpContext.Session.GetInt32("Meals");
+            int checkMeals = (int) HttpContext.Session.GetInt32 ("Meals");
+            if(checkMeals <= 0){
+                string mealMessage = "Michael needs to do some work before he can eat!";
+                ViewBag.Message = mealMessage;
+                ViewBag.Picture = 1;
+                return View("Index", updated);
+            }
             // Update Meals with each Feed
             int meals = (int) HttpContext.Session.GetInt32 ("Meals");
             HttpContext.Session.SetInt32 ("Meals", meals - 1);
@@ -48,7 +57,7 @@ namespace Dojodachi.Controllers {
                 string message = "Michael did not like that Meal! Fullness + 0, Meals - 1";
                 ViewBag.Message = message;
                 ViewBag.Picture = 2;
-                if (updated.Fullness <= 0 || updated.Happiness <= 0) {
+                if (updated.Fullness < 1 || updated.Happiness <= 0) {
                     string deathMessage = "You let Toby talk to Michael!";
                     ViewBag.Message = deathMessage;
                     ViewBag.Picture = 8;
@@ -99,7 +108,7 @@ namespace Dojodachi.Controllers {
                 updated.Energy = (int) HttpContext.Session.GetInt32 ("Energy");
                 updated.Meals = (int) HttpContext.Session.GetInt32 ("Meals");
                 updated.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
-                string BadMessage = "Michael did not want to play, Energy -5, Happiness + 0";
+                string BadMessage = "Michael played a prank on Angela and she called Corporate, Energy -5, Happiness + 0";
                 ViewBag.Picture = 4;
                 ViewBag.Message = BadMessage;
                 if (updated.Fullness <= 0 || updated.Happiness <= 0) {
@@ -126,17 +135,17 @@ namespace Dojodachi.Controllers {
             int newHappiness = happiness.Next (5, 10);
             HttpContext.Session.SetInt32 ("Happiness", playHappiness + newHappiness);
             updated.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
-            string GoodMessage = $"Michael liked Playing! Happiness +{newHappiness}, Energy - 5";
+            string GoodMessage = $"Michael played a prank on Dwight! Happiness +{newHappiness}, Energy - 5";
             ViewBag.Message = GoodMessage;
             ViewBag.Picture = 5;
             if (updated.Fullness <= 0 || updated.Happiness <= 0) {
-                string deathMessage = "You killed Michael!";
+                string deathMessage = "You let Toby talk to Michael!";
                 ViewBag.Message = deathMessage;
                 ViewBag.Picture = 8;
                 ViewBag.Status = 1;
             }
             if (updated.Fullness >= 100 || updated.Happiness >= 100) {
-                string successMessage = "You let Toby talk to Michael!";
+                string successMessage = "Congrats! Michael made it to the weekend!";
                 ViewBag.Message = successMessage;
                 ViewBag.Picture = 9;
                 ViewBag.Status = 1;

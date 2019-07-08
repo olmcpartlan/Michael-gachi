@@ -24,7 +24,9 @@
             <div class = "col">
                 <p>Energy: @Model.Energy</p>
             </div>
-            
+            <form class = "restart" action = "/">
+                <button type="submit" class="btn btn-danger">Restart</button>
+            </form>
         </div>
     </div>
     <div class = "yachi">
@@ -87,9 +89,7 @@
             </div>
         </div>
         <div class ="row">
-            <form class = "restart" action = "/">
-                <button type="submit" class="btn btn-danger">Restart</button>
-            </form>
+            
         </div>
         }
         @if(ViewBag.Status == 1) {

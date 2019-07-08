@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/owenmcpartlan/Desktop/Programming/Dojo/C#/asp.net/Dojodachi/Dojodachi.csproj": {}
+    "/Users/owenmcpartlan/Desktop/Michael-gachi/Michael-gachi/Dojodachi.csproj": {}
   },
   "projects": {
-    "/Users/owenmcpartlan/Desktop/Programming/Dojo/C#/asp.net/Dojodachi/Dojodachi.csproj": {
+    "/Users/owenmcpartlan/Desktop/Michael-gachi/Michael-gachi/Dojodachi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/owenmcpartlan/Desktop/Programming/Dojo/C#/asp.net/Dojodachi/Dojodachi.csproj",
+        "projectUniqueName": "/Users/owenmcpartlan/Desktop/Michael-gachi/Michael-gachi/Dojodachi.csproj",
         "projectName": "Dojodachi",
-        "projectPath": "/Users/owenmcpartlan/Desktop/Programming/Dojo/C#/asp.net/Dojodachi/Dojodachi.csproj",
+        "projectPath": "/Users/owenmcpartlan/Desktop/Michael-gachi/Michael-gachi/Dojodachi.csproj",
         "packagesPath": "/Users/owenmcpartlan/.nuget/packages/",
-        "outputPath": "/Users/owenmcpartlan/Desktop/Programming/Dojo/C#/asp.net/Dojodachi/obj/",
+        "outputPath": "/Users/owenmcpartlan/Desktop/Michael-gachi/Michael-gachi/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
