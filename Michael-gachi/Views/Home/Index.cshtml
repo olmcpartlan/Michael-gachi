@@ -7,6 +7,7 @@
     <title>Dojodachi</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href=~/css/site.css>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <body>
     @model Pet;
@@ -29,38 +30,18 @@
             </form>
         </div>
     </div>
+    <input type="hidden" id="picVal" data-value="@ViewBag.Picture">
+    <script>
+        $(document).ready(function() {
+            var picValue = $('#picVal').data("value");
+            var picURL = `images/michael${picValue}.gif`
+            $('#picId').attr('src', picURL);
+        });
+
+    </script>
     <div class = "yachi">
         <div class = "container">
-            <div class = "row">
-                @if(ViewBag.Picture == 1){
-                    <img src="~/images/michael1.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 2){
-                    <img src="~/images/michael2.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 3){
-                    <img src="~/images/michael3.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 4){
-                    <img src="~/images/michael4.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 5){
-                    <img src="~/images/michael5.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 6){
-                    <img src="~/images/michael6.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 7){
-                    <img src="~/images/michael7.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 8){
-                    <img src="~/images/michael8.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                @if(ViewBag.Picture == 9){
-                    <img src="~/images/michael9.gif" alt="ASP.NET" class="img-responsive"/>
-                }
-                
-            </div>
+            <img id="picId" src="" alt="ASP.NET" class="img-responsive"/>            
             <p>@ViewBag.Message</p>
         </div>
     </div>
