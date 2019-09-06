@@ -11,6 +11,7 @@
 </head>
 <body>
     @model Pet;
+    <h3>Michael-Gatchi</h3>
     <div class = "container">
         <div class = "row">
             <div class = "col">
@@ -47,31 +48,30 @@
     </div>
     <div class = "container">
         @if(ViewBag.Status == 0) {
-        <div class = "row">
-            <div class = "col">
-                <form action = "feed" method = "post">
-                    <button type="submit" class="btn btn-primary">Feed</button>
-                </form>
-            </div>
-            <div class = "col">
-                <form action = "play" method = "post">
-                    <button type="submit" class="btn btn-success">Play</button>
-                </form>
-            </div>
-            <div class = "col">
-                <form action = "work" method = "post">
-                    <button type="submit" class="btn btn-light">Work</button>
-                </form>
-            </div>
-            <div class = "col">
-                <form action = "sleep" method = "post">
-                    <button type="submit" class="btn btn-danger">Sleep</button>
-                </form>
-            </div>
-        </div>
-        <div class ="row">
-            
-        </div>
+            <table>
+                <td>
+                    <form action = "feed" method = "post">
+                        <button type="submit" class="btn btn-primary">Feed</button>
+                    </form>
+                </td>
+                <td>
+                    <form action = "play" method = "post">
+                        <button type="submit" class="btn btn-success">Play</button>
+                    </form>
+                </td>
+                <td>
+                    <form action = "work" method = "post">
+                        <button type="submit" class="btn btn-light">Work</button>
+                    </form>
+                </td>
+                <td>
+                    <form action = "sleep" method = "post">
+                        <button type="submit" class="btn btn-danger">Sleep</button>
+                    </form>
+                </td>
+                
+            </table>
+        
         }
         @if(ViewBag.Status == 1) {
             <form action = "/">
