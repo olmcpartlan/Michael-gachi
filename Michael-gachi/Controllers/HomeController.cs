@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Dojodachi.Models;
 using Microsoft.AspNetCore.Http;
@@ -9,87 +10,97 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dojodachi.Controllers {
     public class HomeController : Controller {
+        private DojodachiContext dbContext;
+        public HomeController(DojodachiContext context) {
+            dbContext = context;
+        }
         [Route ("/")]
         [HttpGet]
-        public IActionResult Index (Pet newPet) {
+        public IActionResult Index () {
+            Pet newPet = new Pet();
+            dbContext.Add(newPet);
             ViewBag.Status = 0;
-            HttpContext.Session.SetInt32 ("Happiness", 20);
-            newPet.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
-            HttpContext.Session.SetInt32 ("Fullness", 20);
-            newPet.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
-            HttpContext.Session.SetInt32 ("Energy", 50);
-            newPet.Energy = (int) HttpContext.Session.GetInt32 ("Energy");
-            HttpContext.Session.SetInt32 ("Meals", 3);
-            newPet.Meals = (int) HttpContext.Session.GetInt32 ("Meals");
+            newPet.Fullness = 20;
+            newPet.Happiness = 20;
+            newPet.Energy = 50;
+            newPet.Meals = 3;
+            dbContext.SaveChanges();
+            HttpContext.Session.SetInt32("SessionID", newPet.id);
+            System.Console.WriteLine(newPet.id);
+            
             ViewBag.Picture = 1;
             string newMessage = "It's Monday morning and Michael is unmotivated. Help Michael make it to the weekend!";
             ViewBag.Message = newMessage;
+            
             return View (newPet);
         }
 
         [Route ("feed")]
         public IActionResult Feed () {
-            // Creating Varibales to update Fullness
-            // Creating new instance of "Updated Pet"
+            
             ViewBag.Status = 0;
+            int currentID = (int) HttpContext.Session.GetInt32("SessionID");
+            Pet currentPet = dbContext.Pets.FirstOrDefault(u => u.id == currentID);
+            System.Console.WriteLine(currentPet);
+
             Pet updated = new Pet ();
-            int feedFullness = (int) HttpContext.Session.GetInt32 ("Fullness");
-            updated.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
-            updated.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
-            updated.Energy = (int) HttpContext.Session.GetInt32 ("Energy");
-            updated.Meals = (int) HttpContext.Session.GetInt32("Meals");
-            int checkMeals = (int) HttpContext.Session.GetInt32 ("Meals");
-            if(checkMeals <= 0){
-                string mealMessage = "Michael needs to do some work before he can eat!";
-                ViewBag.Message = mealMessage;
-                ViewBag.Picture = 1;
-                return View("Index", updated);
-            }
-            // Update Meals with each Feed
-            int meals = (int) HttpContext.Session.GetInt32 ("Meals");
-            HttpContext.Session.SetInt32 ("Meals", meals - 1);
-            updated.Meals = (int) HttpContext.Session.GetInt32 ("Meals");
-            //25% chance Dojodachi Wont like Feed 
-            Random rand = new Random ();
-            int randChance = rand.Next (1, 4);
-            if (randChance == 2) {
-                updated.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
-                string message = "Michael did not like that Meal! Fullness + 0, Meals - 1";
-                ViewBag.Message = message;
-                ViewBag.Picture = 2;
-                if (updated.Fullness < 1 || updated.Happiness <= 0) {
-                    string deathMessage = "You let Toby talk to Michael!";
-                    ViewBag.Message = deathMessage;
-                    ViewBag.Picture = 8;
-                    ViewBag.Status = 1;
-                }
-                if (updated.Fullness >= 100 || updated.Happiness >= 100) {
-                    string successMessage = "Michael made it to the weekend!";
-                    ViewBag.Message = successMessage;
-                    ViewBag.Picture = 9;
-                    ViewBag.Status = 1;
-                }
-                return View ("Index", updated);
-            }
-            Random fullnessValue = new Random ();
-            int newFeedFullness = fullnessValue.Next (5, 10);
-            HttpContext.Session.SetInt32 ("Fullness", feedFullness + newFeedFullness);
-            string feedMessage = $"You fed Michael! Fullness +{newFeedFullness}, Meals - 1";
-            ViewBag.Picture = 3;
-            ViewBag.Message = feedMessage;
-            if (updated.Fullness <= 0 || updated.Happiness <= 0) {
-                string deathMessage = "You let Toby talk to Michael!";
-                ViewBag.Message = deathMessage;
-                ViewBag.Picture = 8;
-                ViewBag.Status = 1;
-            }
-            if (updated.Fullness >= 100 || updated.Happiness >= 100) {
-                string successMessage = "Michael made it to the weekend!";
-                ViewBag.Message = successMessage;
-                ViewBag.Picture = 9;
-                ViewBag.Status = 1;
-            }
-            return View ("Index", updated);
+            // int feedFullness = (int) HttpContext.Session.GetInt32 ("Fullness");
+            // updated.Happiness = (int) HttpContext.Session.GetInt32 ("Happiness");
+            // updated.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
+            // updated.Energy = (int) HttpContext.Session.GetInt32 ("Energy");
+            // updated.Meals = (int) HttpContext.Session.GetInt32("Meals");
+            // int checkMeals = (int) HttpContext.Session.GetInt32 ("Meals");
+            // if(checkMeals <= 0){
+            //     string mealMessage = "Michael needs to do some work before he can eat!";
+            //     ViewBag.Message = mealMessage;
+            //     ViewBag.Picture = 1;
+            //     return View("Index", updated);
+            // }
+            // // Update Meals with each Feed
+            // int meals = (int) HttpContext.Session.GetInt32 ("Meals");
+            // HttpContext.Session.SetInt32 ("Meals", meals - 1);
+            // updated.Meals = (int) HttpContext.Session.GetInt32 ("Meals");
+            // //25% chance Dojodachi Wont like Feed 
+            // Random rand = new Random ();
+            // int randChance = rand.Next (1, 4);
+            // if (randChance == 2) {
+            //     updated.Fullness = (int) HttpContext.Session.GetInt32 ("Fullness");
+            //     string message = "Michael did not like that Meal! Fullness + 0, Meals - 1";
+            //     ViewBag.Message = message;
+            //     ViewBag.Picture = 2;
+            //     if (updated.Fullness < 1 || updated.Happiness <= 0) {
+            //         string deathMessage = "You let Toby talk to Michael!";
+            //         ViewBag.Message = deathMessage;
+            //         ViewBag.Picture = 8;
+            //         ViewBag.Status = 1;
+            //     }
+            //     if (updated.Fullness >= 100 || updated.Happiness >= 100) {
+            //         string successMessage = "Michael made it to the weekend!";
+            //         ViewBag.Message = successMessage;
+            //         ViewBag.Picture = 9;
+            //         ViewBag.Status = 1;
+            //     }
+            //     return View ("Index", updated);
+            // }
+            // Random fullnessValue = new Random ();
+            // int newFeedFullness = fullnessValue.Next (5, 10);
+            // HttpContext.Session.SetInt32 ("Fullness", feedFullness + newFeedFullness);
+            // string feedMessage = $"You fed Michael! Fullness +{newFeedFullness}, Meals - 1";
+            // ViewBag.Picture = 3;
+            // ViewBag.Message = feedMessage;
+            // if (updated.Fullness <= 0 || updated.Happiness <= 0) {
+            //     string deathMessage = "You let Toby talk to Michael!";
+            //     ViewBag.Message = deathMessage;
+            //     ViewBag.Picture = 8;
+            //     ViewBag.Status = 1;
+            // }
+            // if (updated.Fullness >= 100 || updated.Happiness >= 100) {
+            //     string successMessage = "Michael made it to the weekend!";
+            //     ViewBag.Message = successMessage;
+            //     ViewBag.Picture = 9;
+            //     ViewBag.Status = 1;
+            // }
+            return View ("Index");
 
         }
 
