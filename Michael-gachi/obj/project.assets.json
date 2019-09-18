@@ -12071,11 +12071,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/owenmcpartlan/Desktop/side/Michael-gachi/Michael-gachi/Dojodachi.csproj",
+      "projectUniqueName": "/Users/owenmcpartlan/Desktop/programming/c#/Michael-gachi/Dojodachi.csproj",
       "projectName": "Dojodachi",
-      "projectPath": "/Users/owenmcpartlan/Desktop/side/Michael-gachi/Michael-gachi/Dojodachi.csproj",
+      "projectPath": "/Users/owenmcpartlan/Desktop/programming/c#/Michael-gachi/Dojodachi.csproj",
       "packagesPath": "/Users/owenmcpartlan/.nuget/packages/",
-      "outputPath": "/Users/owenmcpartlan/Desktop/side/Michael-gachi/Michael-gachi/obj/",
+      "outputPath": "/Users/owenmcpartlan/Desktop/programming/c#/Michael-gachi/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

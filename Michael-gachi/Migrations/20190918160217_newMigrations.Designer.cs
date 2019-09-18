@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dojodachi.Migrations
 {
     [DbContext(typeof(DojodachiContext))]
-    [Migration("20190906033738_newMigration")]
-    partial class newMigration
+    [Migration("20190918160217_newMigrations")]
+    partial class newMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
