@@ -70,12 +70,12 @@ namespace Dojodachi.Controllers
             dbContext.SaveChanges();
             ViewBag.Message = $"You fed Michael! Fullness +{foodValue}, Meals - 1";
             ViewBag.Picture = 3;
-            if (currentPet.Fullness >= 100 || currentPet.Fullness >= 100)
+            if (currentPet.Fullness >= 100 || currentPet.Happiness >= 100)
             {
                 return Redirect("/success");
             }
 
-            if (currentPet.Fullness <= 0 || currentPet.Fullness <= 0)
+            if (currentPet.Fullness <= 0 || currentPet.Happiness <= 0)
             {
                 return Redirect("/death");
             }
@@ -112,12 +112,12 @@ namespace Dojodachi.Controllers
                 ViewBag.Message = GoodMessage;
                 ViewBag.Picture = 5;
             }
-            if (currentPet.Fullness >= 100 || currentPet.Fullness >= 100)
+            if (currentPet.Fullness >= 100 || currentPet.Happiness >= 100)
             {
                 return Redirect("/success");
             }
 
-            if (currentPet.Fullness <= 0 || currentPet.Fullness <= 0)
+            if (currentPet.Fullness <= 0 || currentPet.Happiness <= 0)
             {
                 return Redirect("/death");
             }
@@ -142,12 +142,12 @@ namespace Dojodachi.Controllers
             ViewBag.Message = newMessage;
             ViewBag.Picture = 6;
 
-            if (currentPet.Fullness >= 100 || currentPet.Fullness >= 100)
+            if (currentPet.Fullness >= 100 || currentPet.Happiness >= 100)
             {
                 return Redirect("/success");
             }
 
-            if (currentPet.Fullness <= 0 || currentPet.Fullness <= 0)
+            if (currentPet.Fullness <= 0 || currentPet.Happiness <= 0)
             {
                 return Redirect("/death");
             }
@@ -171,12 +171,12 @@ namespace Dojodachi.Controllers
             string newMessage = "Michael had a great night sleep, Energy + 15, Happiness -5, Fullness -5";
             ViewBag.Message = newMessage;
             ViewBag.Picture = 7;
-            if (currentPet.Fullness >= 100 || currentPet.Fullness >= 100)
+            if (currentPet.Fullness >= 100 || currentPet.Happiness >= 100)
             {
                 return Redirect("/success");
             }
 
-            if (currentPet.Fullness <= 0 || currentPet.Fullness <= 0)
+            if (currentPet.Fullness <= 0 || currentPet.Happiness <= 0)
             {
                 return Redirect("/death");
             }
